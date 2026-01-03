@@ -97,6 +97,43 @@
             z-index: 2000;
             white-space: nowrap;
         }
+
+        .filter-input {
+            background: white;
+            border: 3px solid black;
+            padding: 8px 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            outline: none;
+        }
+        .filter-input:focus {
+            background: #FFDE00;
+        }
+
+        .upload-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80px;
+            overflow: hidden;
+        }
+
+        .stat-badge {
+            display: inline-block;
+            background: black;
+            color: white;
+            padding: 4px 8px;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 10px;
+            margin-right: 4px;
+        }
+        
+        .tab-btn-active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px #000 !important;
+        }
     </style>
 </head>
 <body class="pb-32 buddy-mode" id="mainBody">
@@ -105,15 +142,14 @@
     <div id="protoModal" onclick="closeModal()">
         <div class="bg-white brutalist-border brutalist-shadow-lg p-8 max-w-md w-full relative" onclick="event.stopPropagation()">
             <button onclick="closeModal()" class="absolute top-2 right-4 font-black text-3xl hover:text-red-600 transition-colors">×</button>
-            <h3 class="text-3xl font-black uppercase italic tracking-tighter mb-4">First Prototype</h3>
+            <h3 class="text-3xl font-black uppercase italic tracking-tighter mb-4">Vision 2026</h3>
             <div class="h-1 bg-black w-full mb-4"></div>
             <p class="font-bold text-sm uppercase leading-relaxed mb-6">
-                This is a functional alpha. Payments are simulated. 
-                <br><br>
-                <span class="bg-yellow-400 p-1">Execution is everything.</span> Help us scale this to every district in Bhutan.
+                161,000+ Tourists arrived in 2025 (+39%). <br><br>
+                We are building the engine to handle <span class="bg-yellow-400 p-1">300,000 visitors</span> using Bhutan's 60,000+ high school students.
             </p>
-            <a href="https://wa.me/97577202806?text=I%20want%20to%20make%20this%20prototype%20real" class="block w-full bg-green-500 text-center py-5 font-black uppercase brutalist-border brutalist-shadow brutalist-btn hover:bg-green-400 text-xl">
-                Make This Possible
+            <a href="https://wa.me/97577202806?text=I%20want%20to%20collaborate%20on%20the%202026%20Vision" class="block w-full bg-green-500 text-center py-5 font-black uppercase brutalist-border brutalist-shadow brutalist-btn hover:bg-green-400 text-xl">
+                Collaborate Now
             </a>
         </div>
     </div>
@@ -121,18 +157,18 @@
     <!-- TOP MARQUEE -->
     <div class="bg-black text-white py-3 overflow-hidden border-b-4 border-black sticky top-0 z-[60]">
         <div class="animate-marquee font-black uppercase text-[11px] tracking-[0.2em] whitespace-nowrap">
-            <span class="px-4 text-yellow-400">EXECUTION > PLANNING • 170,000 BUDDIES READY • EARN GNH CREDITS • NO EXCUSES • </span>
-            <span class="px-4 text-yellow-400">EXECUTION > PLANNING • 170,000 BUDDIES READY • EARN GNH CREDITS • NO EXCUSES • </span>
+            <span class="px-4 text-yellow-400">161,000+ TOURISTS (UP 39%) • 60,000+ STUDENTS READY • EXECUTION > PLANNING • NO WASTED BREAKS • </span>
+            <span class="px-4 text-yellow-400">161,000+ TOURISTS (UP 39%) • 60,000+ STUDENTS READY • EXECUTION > PLANNING • NO WASTED BREAKS • </span>
         </div>
     </div>
 
-    <!-- ROLE TABS -->
-    <nav class="flex border-b-4 border-black sticky top-[44px] z-50 bg-white">
-        <button onclick="switchRole('buddy')" id="btnBuddy" class="flex-1 py-6 font-black text-sm uppercase border-r-4 border-black bg-yellow-400 transition-all">
-            BUDDY DASHBOARD
+    <!-- ROLE TABS (OPTIMIZED AS OBVIOUS BUTTONS) -->
+    <nav class="flex p-4 gap-4 sticky top-[44px] z-50 bg-white border-b-4 border-black">
+        <button onclick="switchRole('buddy')" id="btnBuddy" class="flex-1 py-4 font-black text-xs uppercase brutalist-border brutalist-shadow bg-yellow-400 tab-btn-active transition-all">
+            STUDENT LOGIN
         </button>
-        <button onclick="switchRole('tourist')" id="btnTourist" class="flex-1 py-6 font-black text-sm uppercase bg-white transition-all">
-            FIND A BUDDY
+        <button onclick="switchRole('tourist')" id="btnTourist" class="flex-1 py-4 font-black text-xs uppercase brutalist-border brutalist-shadow bg-white transition-all">
+            TOURIST FEED
         </button>
     </nav>
 
@@ -140,8 +176,9 @@
         <div class="flex flex-col sm:flex-row justify-between items-start gap-6">
             <div>
                 <h1 class="hero-title">Bhutan<br>Buddy</h1>
-                <div class="mt-4 inline-block bg-black text-white px-3 py-1 font-black text-xl uppercase italic tracking-tighter" id="roleTagline">
-                    BUDDY: LOG & EARN
+                <div class="mt-4 flex flex-wrap gap-2">
+                    <div class="stat-badge">2025: 161K ARRIVALS</div>
+                    <div class="stat-badge text-yellow-400">+39% GROWTH</div>
                 </div>
             </div>
             <div id="userProfileIcon" class="profile-img rounded-none flex items-center justify-center font-black text-xl text-center p-2 bg-white uppercase">
@@ -155,11 +192,12 @@
         <!-- BUDDY VIEW -->
         <div id="buddyView" class="space-y-8 block">
             <section class="bg-white brutalist-border brutalist-shadow-lg p-6 sm:p-10">
-                <h2 class="text-3xl font-black mb-8 uppercase underline decoration-4 underline-offset-8 italic">Submit Proof</h2>
+                <h2 class="text-3xl font-black mb-2 uppercase italic">Kill the Wasted Break</h2>
+                <p class="text-[10px] font-black uppercase text-gray-400 mb-8 tracking-widest">Activating 60,000 students for the 2026 surge</p>
                 
                 <div class="space-y-6">
                     <div class="space-y-2">
-                        <label class="font-black text-xs uppercase tracking-widest text-gray-400">Identity Identifier</label>
+                        <label class="font-black text-xs uppercase tracking-widest text-gray-400">Student Identity</label>
                         <input id="studentName" type="text" placeholder="ENTER NAME" class="w-full brutalist-border p-5 font-black text-xl outline-none focus:bg-yellow-50 placeholder-gray-300">
                     </div>
                     
@@ -175,16 +213,19 @@
                     </div>
 
                     <div class="space-y-2">
-                        <label class="font-black text-xs uppercase tracking-widest text-gray-400">Execution Photo (REQUIRED)</label>
-                        <div class="relative w-full brutalist-border bg-gray-50 p-6 text-center cursor-pointer hover:bg-white transition-all group">
-                            <input type="file" id="imageFile" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer">
-                            <span id="fileLabel" class="font-black text-sm uppercase group-hover:scale-105 inline-block transition-transform">Click to Upload Photo</span>
+                        <label class="font-black text-xs uppercase tracking-widest text-gray-400">Execution Photo (REQUIRED FOR GNH SCORE)</label>
+                        <div id="uploadBox" class="relative w-full brutalist-border bg-gray-50 upload-container text-center cursor-pointer hover:bg-white transition-all group">
+                            <input type="file" id="imageFile" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10">
+                            <span id="fileLabel" class="font-black text-sm uppercase group-hover:scale-105 block transition-transform truncate px-6 max-w-[90%]">
+                                Click to Upload Proof
+                            </span>
                         </div>
+                        <p class="text-[9px] font-black text-red-600 uppercase mt-2">No photo = No credit. No excuses.</p>
                     </div>
 
                     <div class="bg-black text-white p-6 brutalist-border">
                         <div class="flex justify-between text-xs font-black uppercase mb-3 tracking-widest">
-                            <span>GNH Execution Score</span>
+                            <span>Discipline Registry Score</span>
                             <span id="xpValue">85</span>%
                         </div>
                         <div class="w-full h-6 bg-gray-800 border-2 border-white">
@@ -193,7 +234,7 @@
                     </div>
 
                     <button onclick="sendData()" id="execBtn" class="w-full bg-green-500 py-6 text-2xl font-black brutalist-border brutalist-shadow brutalist-btn hover:bg-green-400 uppercase tracking-tighter">
-                        Log & Post Gig
+                        Log Execution
                     </button>
                 </div>
             </section>
@@ -202,26 +243,31 @@
         <!-- TOURIST VIEW -->
         <div id="touristView" class="hidden space-y-8">
             <section class="bg-white brutalist-border brutalist-shadow-lg p-6 sm:p-10">
-                <div class="mb-10 flex flex-col sm:flex-row justify-between items-start gap-4">
-                    <div>
-                        <h2 class="text-3xl font-black uppercase italic leading-none underline decoration-4 underline-offset-8">Live Feed</h2>
-                        <p class="text-[11px] font-black uppercase mt-4 text-gray-500">Real-time proof of work from Thimphu</p>
-                    </div>
-                    <button onclick="loadGigs()" class="bg-black text-white px-6 py-3 text-xs font-black uppercase brutalist-border brutalist-shadow active:translate-y-1 transition-all">Refresh Feed</button>
+                <div class="mb-6">
+                    <h2 class="text-3xl font-black uppercase italic leading-none underline decoration-4 underline-offset-8">The Registry</h2>
+                    <p class="text-[11px] font-black uppercase mt-4 text-gray-500">Verified authenticity for the 2026 influx</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10">
+                    <input type="text" id="feedSearch" oninput="applyFilters()" placeholder="SEARCH BUDDIES..." class="filter-input sm:col-span-1">
+                    <select id="sortOrder" onchange="applyFilters()" class="filter-input cursor-pointer appearance-none">
+                        <option value="xp">SORT: DISCIPLINE</option>
+                        <option value="newest">SORT: NEWEST</option>
+                    </select>
+                    <button onclick="loadGigs()" class="bg-black text-white px-6 py-2 text-[10px] font-black uppercase brutalist-border brutalist-shadow active:translate-y-1 transition-all text-center">Refresh</button>
                 </div>
 
                 <div id="gigFeed" class="grid grid-cols-1 gap-10">
-                    <!-- Feed items load here -->
                     <div class="text-center py-20 font-black uppercase text-gray-400 italic">Syncing Registry...</div>
                 </div>
             </section>
         </div>
 
-        <!-- FUNDING CTA -->
+        <!-- COLLAB CTA -->
         <section class="mt-8 pb-20">
             <button onclick="openModal()" class="group block w-full bg-orange-600 text-white p-10 brutalist-border brutalist-shadow-lg brutalist-btn text-center">
-                <p class="font-black text-3xl uppercase tracking-tighter leading-tight group-hover:scale-105 transition-transform">Support this Prototype</p>
-                <p class="font-bold text-sm uppercase mt-4 bg-white text-black inline-block px-4 py-2 italic">Click to Fund via WhatsApp</p>
+                <p class="font-black text-3xl uppercase tracking-tighter leading-tight group-hover:scale-105 transition-transform">Close the Gap</p>
+                <p class="font-bold text-sm uppercase mt-4 bg-white text-black inline-block px-4 py-2 italic">Seeking Partners for 300k Arrivals</p>
             </button>
         </section>
         
@@ -233,18 +279,27 @@
 
     <script>
         const SHEETS_URL = "https://script.google.com/macros/s/AKfycbxhqWQAocM8kNeqALbyQ4Z4466hV0RL3msv5RYCm9u_Dh6589tYCk3wzrZyZkCt1l12/exec";
+        let rawGigsData = []; 
 
-        // APP STATE & UI
         function switchRole(role) {
             const isBuddy = role === 'buddy';
             document.getElementById('buddyView').style.display = isBuddy ? 'block' : 'none';
             document.getElementById('touristView').style.display = isBuddy ? 'none' : 'block';
             document.getElementById('mainBody').className = `pb-20 ${isBuddy ? 'buddy-mode' : 'tourist-mode'}`;
             
-            document.getElementById('btnBuddy').className = `flex-1 py-6 font-black text-sm uppercase border-r-4 border-black transition-all ${isBuddy ? 'bg-yellow-400' : 'bg-white'}`;
-            document.getElementById('btnTourist').className = `flex-1 py-6 font-black text-sm uppercase transition-all ${!isBuddy ? 'bg-blue-600 text-white' : 'bg-white text-black'}`;
+            // OBVIOUS BUTTON STATES
+            const btnBuddy = document.getElementById('btnBuddy');
+            const btnTourist = document.getElementById('btnTourist');
             
-            document.getElementById('roleTagline').innerText = isBuddy ? 'BUDDY: LOG & EARN' : 'TOURIST: BROWSE PROOF';
+            if(isBuddy) {
+                btnBuddy.classList.add('bg-yellow-400', 'tab-btn-active');
+                btnTourist.classList.remove('bg-blue-600', 'text-white', 'tab-btn-active');
+                btnTourist.classList.add('bg-white', 'text-black');
+            } else {
+                btnTourist.classList.add('bg-blue-600', 'text-white', 'tab-btn-active');
+                btnBuddy.classList.remove('bg-yellow-400', 'tab-btn-active');
+                btnBuddy.classList.add('bg-white', 'text-black');
+            }
             
             if(!isBuddy) loadGigs();
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -260,11 +315,20 @@
         }
 
         document.getElementById('imageFile').addEventListener('change', e => {
-            const name = e.target.files[0] ? e.target.files[0].name : "Click to Upload Photo";
-            document.getElementById('fileLabel').innerText = name.length > 20 ? name.substring(0, 17) + "..." : name;
+            const file = e.target.files[0];
+            const label = document.getElementById('fileLabel');
+            const box = document.getElementById('uploadBox');
+            if (file) {
+                label.innerText = file.name;
+                box.classList.remove('bg-gray-50');
+                box.classList.add('bg-green-100', 'border-green-600');
+            } else {
+                label.innerText = "Click to Upload Proof";
+                box.classList.add('bg-gray-50');
+                box.classList.remove('bg-green-100', 'border-green-600');
+            }
         });
 
-        // ACTION: COMPRESS
         async function compressImage(file) {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
@@ -282,7 +346,7 @@
                         ctx.imageSmoothingEnabled = true;
                         ctx.imageSmoothingQuality = 'high';
                         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                        resolve(canvas.toDataURL('image/jpeg', 0.5));
+                        resolve(canvas.toDataURL('image/jpeg', 0.7));
                     };
                     img.src = e.target.result;
                 };
@@ -290,18 +354,18 @@
             });
         }
 
-        // ACTION: POST
         async function sendData() {
             const btn = document.getElementById('execBtn');
             const name = document.getElementById('studentName').value.trim();
             const task = document.getElementById('task');
-            const file = document.getElementById('imageFile').files[0];
+            const fileInput = document.getElementById('imageFile');
+            const file = fileInput.files[0];
 
             if(!name) return showStatus("NAME REQUIRED", "bg-red-500");
             if(!file) return showStatus("PHOTO PROOF REQUIRED", "bg-red-500");
 
             btn.disabled = true;
-            btn.innerText = "UPLOADING PROOF...";
+            btn.innerText = "VERIFYING...";
             btn.classList.add('loading-pulse');
 
             try {
@@ -310,10 +374,9 @@
                     name, 
                     activity: task.options[task.selectedIndex].text, 
                     image: base64, 
-                    score: 85 
+                    score: Math.floor(Math.random() * (100 - 80) + 80) 
                 };
 
-                // No-cors mode is used because Sheets POST doesn't return typical CORS headers
                 await fetch(SHEETS_URL, {
                     method: 'POST',
                     mode: 'no-cors',
@@ -324,69 +387,34 @@
                 document.getElementById('userProfileIcon').innerText = name.substring(0, 2);
                 document.getElementById('userProfileIcon').classList.add('bg-yellow-400');
                 
-                showStatus("✓ GIG LOGGED IN CLOUD", "bg-green-500");
+                showStatus("✓ REGISTRY UPDATED", "bg-green-500");
                 if (window.navigator.vibrate) window.navigator.vibrate([50, 30, 50]);
 
-                // Reset
                 document.getElementById('studentName').value = "";
-                document.getElementById('imageFile').value = "";
-                document.getElementById('fileLabel').innerText = "Click to Upload Photo";
+                fileInput.value = "";
+                document.getElementById('fileLabel').innerText = "Click to Upload Proof";
+                document.getElementById('uploadBox').classList.add('bg-gray-50');
+                document.getElementById('uploadBox').classList.remove('bg-green-100', 'border-green-600');
 
             } catch (err) {
                 console.error(err);
                 showStatus("CONNECTION ERROR", "bg-red-600");
             } finally {
                 btn.disabled = false;
-                btn.innerText = "Log & Post Gig";
+                btn.innerText = "Log Execution";
                 btn.classList.remove('loading-pulse');
             }
         }
 
-        // ACTION: GET
         async function loadGigs() {
             const feed = document.getElementById('gigFeed');
             feed.innerHTML = `<div class="text-center py-20 font-black uppercase loading-pulse italic">Accessing Live Registry...</div>`;
             
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
-
             try {
-                const res = await fetch(SHEETS_URL + "?action=read", { signal: controller.signal });
-                const data = await res.json();
-                clearTimeout(timeoutId);
+                const res = await fetch(SHEETS_URL + "?action=read");
+                rawGigsData = await res.json();
+                applyFilters(); 
                 
-                if(!data || data.length === 0) {
-                    feed.innerHTML = `<div class="text-center py-20 font-black uppercase text-gray-400 italic">No gigs logged yet today.</div>`;
-                    return;
-                }
-
-                feed.innerHTML = "";
-                data.reverse().forEach((gig, index) => {
-                    const div = document.createElement('div');
-                    div.className = "brutalist-border bg-white overflow-hidden brutalist-shadow transition-all hover:-translate-y-2 hover:rotate-1";
-                    div.style.animationDelay = `${index * 0.1}s`;
-                    
-                    const img = (gig.image && gig.image.includes('base64')) 
-                        ? `<img src="${gig.image}" class="gig-card-img" alt="proof" loading="lazy">`
-                        : `<div class="gig-card-img flex items-center justify-center font-black text-gray-300 text-xs uppercase">No Photo Proof Available</div>`;
-
-                    div.innerHTML = `
-                        ${img}
-                        <div class="p-6">
-                            <div class="flex justify-between items-start mb-6">
-                                <div>
-                                    <h4 class="font-black text-2xl uppercase tracking-tighter leading-none">${gig.name}</h4>
-                                    <p class="text-[10px] font-black text-blue-600 uppercase mt-3 tracking-[0.2em]">${gig.activity}</p>
-                                </div>
-                                <div class="bg-black text-yellow-400 px-3 py-1 text-[10px] font-black uppercase italic brutalist-border">
-                                    SCORE: ${gig.score}%
-                                </div>
-                            </div>
-                            <button onclick="openModal()" class="w-full bg-black text-white py-5 font-black uppercase text-sm brutalist-btn tracking-widest hover:bg-yellow-400 hover:text-black transition-colors">Hire Companion</button>
-                        </div>
-                    `;
-                    feed.appendChild(div);
-                });
             } catch (e) {
                 console.error(e);
                 feed.innerHTML = `
@@ -398,20 +426,68 @@
             }
         }
 
+        function applyFilters() {
+            const feed = document.getElementById('gigFeed');
+            const search = document.getElementById('feedSearch').value.toLowerCase();
+            const sort = document.getElementById('sortOrder').value;
+
+            if(!rawGigsData || rawGigsData.length === 0) {
+                feed.innerHTML = `<div class="text-center py-20 font-black uppercase text-gray-400 italic">No proof found.</div>`;
+                return;
+            }
+
+            let filtered = rawGigsData.filter(g => 
+                (g.name && g.name.toLowerCase().includes(search)) || 
+                (g.activity && g.activity.toLowerCase().includes(search))
+            );
+
+            if (sort === 'xp') {
+                filtered.sort((a, b) => b.score - a.score);
+            } else if (sort === 'newest') {
+                filtered.reverse(); 
+            }
+
+            if (filtered.length === 0) {
+                feed.innerHTML = `<div class="text-center py-20 font-black uppercase text-gray-400 italic">No matches.</div>`;
+                return;
+            }
+
+            feed.innerHTML = "";
+            filtered.forEach((gig) => {
+                const div = document.createElement('div');
+                div.className = "brutalist-border bg-white overflow-hidden brutalist-shadow transition-all hover:-translate-y-2";
+                
+                const img = (gig.image && gig.image.includes('base64')) 
+                    ? `<img src="${gig.image}" class="gig-card-img" alt="proof" loading="lazy">`
+                    : `<div class="gig-card-img flex items-center justify-center font-black text-gray-300 text-xs uppercase">No Photo Proof</div>`;
+
+                div.innerHTML = `
+                    ${img}
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-6 gap-2">
+                            <div class="overflow-hidden">
+                                <h4 class="font-black text-2xl uppercase tracking-tighter leading-none truncate">${gig.name}</h4>
+                                <p class="text-[10px] font-black text-blue-600 uppercase mt-3 tracking-[0.2em] truncate">${gig.activity}</p>
+                            </div>
+                            <div class="bg-black text-yellow-400 px-3 py-1 text-[10px] font-black uppercase italic brutalist-border flex-shrink-0">
+                                XP: ${gig.score}%
+                            </div>
+                        </div>
+                        <button onclick="openModal()" class="w-full bg-black text-white py-5 font-black uppercase text-sm brutalist-btn tracking-widest hover:bg-yellow-400 hover:text-black transition-colors">Verify Buddy</button>
+                    </div>
+                `;
+                feed.appendChild(div);
+            });
+        }
+
         function showStatus(text, bgColor) {
             const toast = document.getElementById('statusToast');
             const inner = document.getElementById('statusText');
             inner.innerText = text;
             inner.className = `brutalist-border px-6 py-3 font-black uppercase text-sm brutalist-shadow-lg text-white ${bgColor}`;
             toast.classList.remove('hidden');
-            setTimeout(() => toast.classList.add('hidden'), 4000);
+            setTimeout(() => toast.classList.add('hidden'), 3500);
         }
-
-        // Initialize view
-        window.onload = () => {
-            // Check if we should start in Tourist mode if there's data
-            // loadGigs(); // Optional: preload feed
-        };
     </script>
 </body>
 </html>
